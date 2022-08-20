@@ -1,0 +1,17 @@
+{
+  "flow": {
+    "over": ["ethernet", "ipv4", "udp"],
+    "scope": "flow",
+    "classify" : { "join": "and", "condition":[{"op": "eq", "arguments": ["tcp.port", 40]},  {"op": "eq", "arguments": ["ipv4.src", "10.1.1.1"]}]}
+  },
+  "payload": {
+	"offset": 150,
+	"struct": [{"name" : "pixel", "size": 24, "type": "bit"}],
+	"repetition": "MAX"
+  },
+  "function" : {
+    "row": { "condition": [{"op":"leq", "arguments": ["pixel","DARK"]}], "join": "none", "execute": {"action":"count", "output": {"reference":"##count"}}},
+    "flow": { "frequency":"packet", "condition": [{"op":"geq", "arguments": [{"reference":"##count"},"THRESHOLD"]}], "join": "none", "execute": {"action":"notify", "named-arguments":{"ip-dst":"10.2.2.2", "udp-dport":"2022"}, "annotation":["once"]}}
+   }
+}
+

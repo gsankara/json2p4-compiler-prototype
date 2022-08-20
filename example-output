@@ -1,0 +1,215 @@
+Script started on 2022-08-14 23:44:44-07:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="120" LINES="30"]
+gs@DESKTOP[00m:[01;34m[00m$ python3 json2c.py test1.json
+JS {'flow': {'over': ['ethernet', 'ipv4', 'udp'], 'scope': 'flow', 'classify': {'join': 'and', 'condition': [{'op': 'eq', 'arguments': ['tcp.port', 40]}, {'op': 'eq', 'arguments': ['ipv4.src', '10.1.1.1']}]}}, 'payload': {'offset': 150, 'struct': [{'name': 'pixel', 'size': 24, 'type': 'bit'}], 'repetition': 'MAX'}, 'function': {'row': {'condition': [{'op': 'leq', 'arguments': ['pixel', 'DARK']}], 'join': 'none', 'execute': {'action': 'count', 'output': {'reference': '##count'}}}, 'flow': {'frequency': 'packet', 'condition': [{'op': 'geq', 'arguments': [{'reference': '##count'}, 'THRESHOLD']}], 'join': 'none', 'execute': {'action': 'notify', 'named-arguments': {'ip-dst': '10.2.2.2', 'udp-dport': '2022'}, 'annotation': ['once']}}}}
+GLOBAL:
+header offset_t {
+    bit<150> skip;
+}
+
+header payload_t {
+    bit<24> pixel;
+}
+
+HEADERS:
+   offset_t offset;
+   payload_t pload0;
+   payload_t pload1;
+   payload_t pload2;
+   payload_t pload3;
+   payload_t pload4;
+   payload_t pload5;
+   payload_t pload6;
+   payload_t pload7;
+   payload_t pload8;
+   payload_t pload9;
+   payload_t pload10;
+   payload_t pload11;
+   payload_t pload12;
+   payload_t pload13;
+   payload_t pload14;
+   payload_t pload15;
+   payload_t pload16;
+   payload_t pload17;
+   payload_t pload18;
+   payload_t pload19;
+   payload_t pload20;
+   payload_t pload21;
+   payload_t pload22;
+   payload_t pload23;
+   payload_t pload24;
+   payload_t pload25;
+   payload_t pload26;
+   payload_t pload27;
+   payload_t pload28;
+   payload_t pload29;
+   payload_t pload30;
+   payload_t pload31;
+   payload_t pload32;
+   payload_t pload33;
+   payload_t pload34;
+   payload_t pload35;
+   payload_t pload36;
+   payload_t pload37;
+   payload_t pload38;
+   payload_t pload39;
+   payload_t pload40;
+   payload_t pload41;
+   payload_t pload42;
+   payload_t pload43;
+   payload_t pload44;
+   payload_t pload45;
+   payload_t pload46;
+   payload_t pload47;
+   payload_t pload48;
+   payload_t pload49;
+   payload_t pload50;
+   payload_t pload51;
+   payload_t pload52;
+   payload_t pload53;
+   payload_t pload54;
+   payload_t pload55;
+   payload_t pload56;
+   payload_t pload57;
+   payload_t pload58;
+   payload_t pload59;
+PARSER:
+
+	state sql {
+		packet.extract(hdr.offset);
+		packet.extract(hdr.pload0);
+		packet.extract(hdr.pload1);
+		packet.extract(hdr.pload2);
+		packet.extract(hdr.pload3);
+		packet.extract(hdr.pload4);
+		packet.extract(hdr.pload5);
+		packet.extract(hdr.pload6);
+		packet.extract(hdr.pload7);
+		packet.extract(hdr.pload8);
+		packet.extract(hdr.pload9);
+		packet.extract(hdr.pload10);
+		packet.extract(hdr.pload11);
+		packet.extract(hdr.pload12);
+		packet.extract(hdr.pload13);
+		packet.extract(hdr.pload14);
+		packet.extract(hdr.pload15);
+		packet.extract(hdr.pload16);
+		packet.extract(hdr.pload17);
+		packet.extract(hdr.pload18);
+		packet.extract(hdr.pload19);
+		packet.extract(hdr.pload20);
+		packet.extract(hdr.pload21);
+		packet.extract(hdr.pload22);
+		packet.extract(hdr.pload23);
+		packet.extract(hdr.pload24);
+		packet.extract(hdr.pload25);
+		packet.extract(hdr.pload26);
+		packet.extract(hdr.pload27);
+		packet.extract(hdr.pload28);
+		packet.extract(hdr.pload29);
+		packet.extract(hdr.pload30);
+		packet.extract(hdr.pload31);
+		packet.extract(hdr.pload32);
+		packet.extract(hdr.pload33);
+		packet.extract(hdr.pload34);
+		packet.extract(hdr.pload35);
+		packet.extract(hdr.pload36);
+		packet.extract(hdr.pload37);
+		packet.extract(hdr.pload38);
+		packet.extract(hdr.pload39);
+		packet.extract(hdr.pload40);
+		packet.extract(hdr.pload41);
+		packet.extract(hdr.pload42);
+		packet.extract(hdr.pload43);
+		packet.extract(hdr.pload44);
+		packet.extract(hdr.pload45);
+		packet.extract(hdr.pload46);
+		packet.extract(hdr.pload47);
+		packet.extract(hdr.pload48);
+		packet.extract(hdr.pload49);
+		packet.extract(hdr.pload50);
+		packet.extract(hdr.pload51);
+		packet.extract(hdr.pload52);
+		packet.extract(hdr.pload53);
+		packet.extract(hdr.pload54);
+		packet.extract(hdr.pload55);
+		packet.extract(hdr.pload56);
+		packet.extract(hdr.pload57);
+		packet.extract(hdr.pload58);
+		packet.extract(hdr.pload59);
+		transition accept;
+	}
+
+        if (hdr.ethernet_t.isValid() && hdr.ipv4_t.isValid() && hdr.udp_t.isValid() && (hdr.tcp.port  ==  40 && hdr.ipv4.src  ==  "10.1.1.1")) {
+            if ((hdr.pload0.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload1.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload2.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload3.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload4.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload5.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload6.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload7.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload8.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload9.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload10.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload11.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload12.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload13.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload14.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload15.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload16.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload17.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload18.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload19.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload20.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload21.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload22.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload23.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload24.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload25.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload26.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload27.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload28.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload29.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload30.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload31.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload32.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload33.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload34.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload35.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload36.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload37.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload38.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload39.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload40.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload41.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload42.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload43.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload44.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload45.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload46.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload47.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload48.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload49.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload50.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload51.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload52.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload53.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload54.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload55.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload56.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload57.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload58.pixel  <=  DARK)) { count=count+1; }
+		if ((hdr.pload59.pixel  <=  DARK)) { count=count+1; }
+
+        }
+
+	if (count  >=  THRESHOLD) { 
+		meta.ipv4dst="10.2.2.2";
+		meta.udpdport=2022;
+		notify();
+	 }
+	
+gs@DESKTOP[00m$ exit
+exit
+
+Script done on 2022-08-14 23:45:00-07:00 [COMMAND_EXIT_CODE="0"]
